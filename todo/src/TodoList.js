@@ -23,10 +23,20 @@ function TodoList() {
 
     const [todos, setTodos] = useState(INITIAL_STATE)
 
+    const addTodo = (newTodo) => {
+
+        setTodos(todos => [...todos, {...newTodo, id: uuidv4()}])
+
+    }
+
+    const removeTodo = (todo) => {
+        setTodos(todos.filter(t => t !== todo))
+    }
+
     return (
         <>
-            <NewTodoForm />
-            {todos.map(t => <Todo key={t.id} task={t.task}/>)}
+            <NewTodoForm addTodo={addTodo}/>
+            {todos.map(t => <Todo key={t.id} task={t.task} removeTodo={() => removeTodo(t)}/>)}
         </>
     )
 

@@ -9,9 +9,51 @@ When this form is submitted, a new Todo component should be created.
 
 */
 
-function NewTodoForm () {
+function NewTodoForm ( {addTodo}) {
+
+    const INITIAL_STATE = {
+        task:""
+    }
+
+    const [formData, setFormData] = useState(INITIAL_STATE);
+
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+
+        setFormData((data) => {
+            return {
+                ...data,
+                [name]:value
+            }
+        })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        addTodo({...formData});
+        setFormData(INITIAL_STATE);
+    }
+
+
     return (
-        <div>THIS WILL BE THE FORM</div>
+
+        <form onSubmit={handleSubmit}>
+
+            <h3>Add "TO DO"</h3>
+
+            <label htmlFor="task">Width: </label>
+            <input
+                type="text"
+                placeholder="task"
+                name="task"
+                id="task"
+                value={formData.task}
+                onChange={handleChange}
+            />
+
+            <button> Add Task! </button>
+
+        </form>
     )
 }
 

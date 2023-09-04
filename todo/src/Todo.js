@@ -7,10 +7,15 @@ For each Todo component, there should also be a button with the text “X” tha
 
 */
 
-function Todo ({task}) {
+function Todo ({task, removeTodo}) {
 
     return (
-        <div>{task}</div>
+        <div>
+            {task}
+            <button onClick={removeTodo}>
+                X
+            </button>
+        </div>
     )
 
 }
