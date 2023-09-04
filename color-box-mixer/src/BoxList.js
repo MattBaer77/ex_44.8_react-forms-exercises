@@ -24,10 +24,16 @@ function BoxList () {
         setBoxes(boxes => [...boxes, { ...newBox, id: uuidv4()}])
     }
 
+    const removeBox = (box) => {
+        
+        setBoxes(boxes.filter(b => b !== box))
+
+    }
+
     return (
         <>
         <NewBoxForm addBox={addBox}/>
-        {boxes.map(b => <Box key={b.id} width={b.width} height={b.height} backgroundColor={b.backgroundColor}/>)}
+        {boxes.map(b => <Box key={b.id} width={b.width} height={b.height} backgroundColor={b.backgroundColor} removeBox={() => removeBox(b)}/>)}
         </>
     )
 
