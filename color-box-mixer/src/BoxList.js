@@ -20,8 +20,8 @@ function BoxList () {
 
     const [boxes, setBoxes] = useState(INITIAL_STATE)
 
-    const addBox = (width, height, backgroundColor) => {
-        setBoxes(boxes => [...boxes, {id: uuidv4(), width, height, backgroundColor}])
+    const addBox = (newBox) => {
+        setBoxes(boxes => [...boxes, { ...newBox, id: uuidv4()}])
     }
 
     return (
